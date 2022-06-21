@@ -5,8 +5,8 @@ from botocore.exceptions import ClientError
 MANAGEMENT_ORG_ROLE = "list-accounts-role"
 X_ACCOUNT_ROLE = "read-only-role"
 MANAGEMENT_ACCOUNT_ID = "000000000000"
-ROLE_SESSION_NAME = "sns"
-kms_key = "alias/aws/sns"
+ROLE_SESSION_NAME = "sns-topic-encrpytion"
+KMS_KEY = "alias/aws/sns"
 
 logger = logging.getLogger()
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
@@ -88,7 +88,7 @@ def main():
                     encryption_status = get_encryption_status(sns, topic)
                     if encryption_status is False:
                         print(f"enabling encryption for topic -{topic}")
-                        set_sns_topic_encryption(sns, topic, kms_key)
+                        set_sns_topic_encryption(sns, topic, KMS_KEY)
                 except Exception as error:
                     logger.error(f"*** An error occured ***" + str(error))
 
