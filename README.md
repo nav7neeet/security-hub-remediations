@@ -1,10 +1,13 @@
-# security-hub-remediations
+# Security Hub Findings Remediation
 
 ## About <br>
 
 Security Hub reports a medium severity finding - SNS.1 SNS topics should be encrypted at-rest using AWS KMS if encrpytion is not enabled for SNS topics. The python script sns-topic-encryption-fix.py first assumes a role in the management account (Parent account) to get the list of AWS accounts. It then assumes a role in each account one by one and lists out all the SNS topics.
 
 It then checks the encryption status of each SNS topic and builds a list of topics which does not have encryption enabled. It iterates through that list and enables encryption for the SNS topics.
+
+![image](https://user-images.githubusercontent.com/14819434/174821749-2190d21a-fd40-4c16-8cbc-b2c503f37e78.png)
+
 
 ## Required Configuration <br>
 
